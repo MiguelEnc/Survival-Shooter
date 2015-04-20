@@ -7,6 +7,8 @@ public class NetworkManager : MonoBehaviour {
 	private const string gameName = "RoomName";
 	private HostData[] hostList;
 	public GameObject playerPrefab;
+	private string playerName = "";
+	//GameObject playerGameObject;
 	
 	private void StartServer()
 	{
@@ -52,6 +54,8 @@ public class NetworkManager : MonoBehaviour {
 	private void SpawnPlayer()
 	{
 		Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+		//PlayerName name = playerPrefab.getComponent<PlayerName>();
+		//name.nombre = playerName;
 	}
 
 
@@ -60,30 +64,30 @@ public class NetworkManager : MonoBehaviour {
 		//only shown if server is not initialized or if not into romm already
 		if (!Network.isClient && !Network.isServer)
 		{
-			if (GUI.Button(new Rect(100, 100, 250, 100), "Start Server"))
-				StartServer();
-			
-			if (GUI.Button(new Rect(100, 250, 250, 100), "Refresh Hosts"))
-				RefreshHostList();
-			
-			if (hostList != null)
-			{
-				for (int i = 0; i < hostList.Length; i++)
+
+			GUI.Label(new Rect(700, 50, 150, 100), "Nombre del personaje");
+			playerName = GUI.TextField(new Rect(700, 80, 110, 30), playerName, 25);
+
+			if(!playerName.Equals("")){
+				if (GUI.Button(new Rect(100, 100, 250, 100), "Start Server")){
+					StartServer();
+				}
+
+				if (GUI.Button(new Rect(100, 250, 250, 100), "Refresh Hosts"))
+					RefreshHostList();
+				
+				if (hostList != null)
 				{
-					if (GUI.Button(new Rect(400, 100 + (110 * i), 300, 100), hostList[i].gameName))
-						JoinServer(hostList[i]);
+					for (int i = 0; i < hostList.Length; i++)
+					{
+						if (GUI.Button(new Rect(400, 100 + (110 * i), 300, 100), hostList[i].gameName)){
+							JoinServer(hostList[i]);
+						}
+					}
 				}
 			}
-		}
-	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		}
+
 	}
 }
