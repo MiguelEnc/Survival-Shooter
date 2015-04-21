@@ -9,9 +9,10 @@ public class Player : MonoBehaviour
 	private float syncTime = 0f;
 	private Vector3 syncStartPosition = Vector3.zero;
 	private Vector3 syncEndPosition = Vector3.zero;
-	public string Name;
 
-	void Start(){
+	//public string Name;
+
+	void Awake(){
 		//GetComponent<PlayerName>().nombre = Name;
 	}
 	

@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NetworkManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ChatSystemJS.js">
     <Files>
-      <File FileName="Assets\Scripts\NetworkManager.cs" Line="62" Column="2" />
-      <File FileName="Assets\Scripts\Player.cs" Line="15" Column="5" />
+      <File FileName="Assets\Scripts\NetworkManager.cs" Line="104" Column="40" />
+      <File FileName="Assets\Scripts\Player.cs" Line="13" Column="2" />
       <File FileName="Assets\Scripts\PlayerName.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ChatSystemJS.js" Line="35" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

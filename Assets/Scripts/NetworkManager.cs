@@ -50,12 +50,20 @@ public class NetworkManager : MonoBehaviour {
 		SpawnPlayer();
 	}
 
-
+	void OnPlayerDisconnected(NetworkPlayer player)
+	{
+		Network.RemoveRPCs(player);
+		Network.DestroyPlayerObjects(player);
+	}
+	
 	private void SpawnPlayer()
 	{
 		Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-		//PlayerName name = playerPrefab.getComponent<PlayerName>();
-		//name.nombre = playerName;
+
+		//GameObject instantiatedPlayer = (GameObject) Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+		//instantiatedPlayer.GetComponent<Player>().Name = playerName;
+
+
 	}
 
 
@@ -87,7 +95,20 @@ public class NetworkManager : MonoBehaviour {
 				}
 			}
 
+		}else{
+			//GUI.Button(new Rect(100, 100, 250, 100), "Start Server")
+			if (GUILayout.Button("Disconnect from server"))
+				if (Network.connections.Length == 1) {
+					Debug.Log("Disconnecting: " + Network.connections[0].ipAddress + ":" + Network.connections[0].port);
+					Network.CloseConnection(Network.connections[0], true);
+				OnPlayerDisconnected(Network.player);
+			} else
+					if (Network.connections.Length == 0)
+						Debug.Log("No one is connected");
+				else
+					if (Network.connections.Length > 1)
+						Debug.Log("Too many connections. Are we running a server?");
 		}
-
+		
 	}
 }
