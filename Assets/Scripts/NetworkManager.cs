@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour {
 
@@ -58,12 +59,11 @@ public class NetworkManager : MonoBehaviour {
 	
 	private void SpawnPlayer()
 	{
-		Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-
-		//GameObject instantiatedPlayer = (GameObject) Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-		//instantiatedPlayer.GetComponent<Player>().Name = playerName;
-
-
+		GameObject instantiatedPlayer = (GameObject) Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+		Canvas canvas = instantiatedPlayer.GetComponentInChildren<Canvas>();
+		Image image = canvas.GetComponentInChildren<Image>();
+		Text text = image.GetComponentInChildren<Text>();
+		text.text = playerName;
 	}
 
 
