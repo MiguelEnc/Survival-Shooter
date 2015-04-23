@@ -9,13 +9,8 @@ public class Player : MonoBehaviour
 	private float syncTime = 0f;
 	private Vector3 syncStartPosition = Vector3.zero;
 	private Vector3 syncEndPosition = Vector3.zero;
-
-	//public string Name;
-
-	void Awake(){
-		//GetComponent<PlayerName>().nombre = Name;
-	}
 	
+
 	void Update()
 	{
 		if (networkView.isMine)
@@ -28,7 +23,6 @@ public class Player : MonoBehaviour
 			SyncedMovement();
 		}
 	}
-
 
 	private void InputColorChange()
 	{

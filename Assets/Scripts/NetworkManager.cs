@@ -9,14 +9,15 @@ public class NetworkManager : MonoBehaviour {
 	private HostData[] hostList;
 	public GameObject playerPrefab;
 	private string playerName = "";
-	private int puerto = 25000;
+	private int puerto = 10002;
 	private int maxConnections = 10;
-	//GameObject playerGameObject;
+	//private string ip = "127.0.0.1";
 	
 	private void StartServer()
 	{
-		//Network.InitializeServer(10, 25000, !Network.HavePublicAddress());
-		Network.InitializeServer(maxConnections, puerto);
+		Network.InitializeServer(10, 25000, !Network.HavePublicAddress());
+		//Network.InitializeServer(maxConnections, puerto);
+
 		MasterServer.RegisterHost(serverGameName, gameName);
 	}
 
@@ -45,6 +46,7 @@ public class NetworkManager : MonoBehaviour {
 	private void JoinServer(HostData hostData)
 	{
 		Network.Connect(hostData);
+		//Network.Connect(ip,puerto);
 	}
 
 
