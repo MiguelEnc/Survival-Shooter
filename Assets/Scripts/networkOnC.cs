@@ -109,15 +109,15 @@ public class networkOnC : MonoBehaviour {
 		SetPlayerName(instantiatedPlayer);
 
 	}
-
-	[RPC] void SetPlayerName(GameObject instantiatedPlayer)
+	void SetPlayerName(GameObject instantiatedPlayer)
+	//[RPC] void SetPlayerName(GameObject instantiatedPlayer)
 	{
 		Canvas canvas = instantiatedPlayer.GetComponentInChildren<Canvas>();
 		Image image = canvas.GetComponentInChildren<Image>();
 		Text text = image.GetComponentInChildren<Text>();
 		text.text = playerName;
 
-		networkView.RPC("SetPlayerName", RPCMode.All, instantiatedPlayer);
+		//networkView.RPC("SetPlayerName", RPCMode.All, instantiatedPlayer);
 	}
 }
 

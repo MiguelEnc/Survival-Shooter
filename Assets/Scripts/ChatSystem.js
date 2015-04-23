@@ -1,6 +1,4 @@
-﻿#pragma strict
-
-var log : String = "";
+﻿var log : String = "";
 var message : String = "";
 var chatting : boolean = false;
 
@@ -30,5 +28,3 @@ function Chat(input: String){
 	log += "\n";
 	log += input;
 }
-
-
