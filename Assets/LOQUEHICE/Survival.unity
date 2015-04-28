@@ -177,7 +177,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 418902481}
-  - 148: {fileID: 418902483}
   - 114: {fileID: 418902484}
   m_Layer: 0
   m_Name: NetworkManager
@@ -198,18 +197,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!148 &418902483
-NetworkView:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 418902479}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 418902481}
-  m_ViewID:
-    m_ID: 3
-    m_Type: 1
 --- !u!114 &418902484
 MonoBehaviour:
   m_ObjectHideFlags: 0
