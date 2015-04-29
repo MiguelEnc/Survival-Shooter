@@ -9,6 +9,13 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 	int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 	float camRayLength = 100f;          // The length of the ray from the camera into the scene.
+
+	//variables used to interpolate data over the network
+	private float lastSynchronizationTime = 0f;
+	private float syncDelay = 0f;
+	private float syncTime = 0f;
+	private Vector3 syncStartPosition = Vector3.zero;
+	private Vector3 syncEndPosition = Vector3.zero;
 	
 	void Awake ()
 	{
@@ -26,15 +33,23 @@ public class PlayerMovement : MonoBehaviour
 		// Store the input axes.
 		float h = Input.GetAxisRaw ("Horizontal");
 		float v = Input.GetAxisRaw ("Vertical");
-		
-		// Move the player around the scene.
-		Move (h, v);
-		
-		// Turn the player to face the mouse cursor.
-		Turning ();
-		
-		// Animate the player.
-		Animating (h, v);
+
+		if (networkView.isMine){
+			// Move the player around the scene.
+			Move (h, v);
+
+			// Animate the player.
+			Animating (h, v);
+
+			// Turn the player to face the mouse cursor.
+			Turning ();
+		}
+		/*
+		else{
+			//Syncs the movement with the values from the network
+			SyncedMovement();
+		}
+		*/
 	}
 	
 	void Move (float h, float v)
@@ -48,7 +63,13 @@ public class PlayerMovement : MonoBehaviour
 		// Move the player to it's current position plus the movement.
 		playerRigidbody.MovePosition (transform.position + movement);
 	}
-	
+
+	void SyncedMovement()
+	{
+		syncTime += Time.deltaTime;
+		rigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
+	}
+
 	void Turning ()
 	{
 		// Create a ray from the mouse cursor on screen in the direction of the camera.
@@ -65,10 +86,10 @@ public class PlayerMovement : MonoBehaviour
 			
 			// Ensure the vector is entirely along the floor plane.
 			playerToMouse.y = 0f;
-			
+
 			// Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
 			Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
-			
+
 			// Set the player's rotation to this new rotation.
 			playerRigidbody.MoveRotation (newRotation);
 		}
@@ -81,5 +102,27 @@ public class PlayerMovement : MonoBehaviour
 		
 		// Tell the animator whether or not the player is walking.
 		anim.SetBool ("IsWalking", walking);
+	}
+
+	//Network: Sending and receiving data over the network
+	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	{
+		Vector3 syncPosition = Vector3.zero;
+		if (stream.isWriting)
+		{
+			syncPosition = rigidbody.position;
+			stream.Serialize(ref syncPosition);
+		}
+		else
+		{
+			stream.Serialize(ref syncPosition);
+			
+			syncTime = 0f;
+			syncDelay = Time.time - lastSynchronizationTime;
+			lastSynchronizationTime = Time.time;
+			
+			syncStartPosition = rigidbody.position;
+			syncEndPosition = syncPosition;
+		}
 	}
 }

@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Desktop\Survival-Shooter-baa8a14497ca6d09a4b8151f97b8293f68ce0eaf\Assets\Scripts\NetworkManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMovement.cs">
     <Files>
-      <File FileName="..\..\..\Desktop\Survival-Shooter-baa8a14497ca6d09a4b8151f97b8293f68ce0eaf\Assets\Scripts\NetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMovement.cs" Line="52" Column="5" />
+      <File FileName="Assets\Networking\NetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Networking\Player.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

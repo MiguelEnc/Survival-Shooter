@@ -46,15 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LOQUEHICE\NetworkManager.cs" />
-     <Compile Include="Assets\LOQUEHICE\Player.cs" />
-     <Compile Include="Assets\LOQUEHICE\networkOnC.cs" />
      <Compile Include="Assets\MobileInput\Scripts\CrossPlatformInputManager.cs" />
      <Compile Include="Assets\MobileInput\Scripts\Joystick.cs" />
      <Compile Include="Assets\MobileInput\Scripts\MobileControlRig.cs" />
      <Compile Include="Assets\MobileInput\Scripts\PlatformSpecific\MobileInput.cs" />
      <Compile Include="Assets\MobileInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
      <Compile Include="Assets\MobileInput\Scripts\VirtualInput.cs" />
+     <Compile Include="Assets\Networking\NetworkManager.cs" />
+     <Compile Include="Assets\Networking\Player.cs" />
+     <Compile Include="Assets\Networking\networkOnC.cs" />
      <Compile Include="Assets\PauseManager.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
