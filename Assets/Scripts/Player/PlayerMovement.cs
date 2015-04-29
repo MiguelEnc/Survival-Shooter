@@ -40,16 +40,15 @@ public class PlayerMovement : MonoBehaviour
 
 			// Animate the player.
 			Animating (h, v);
-
-			// Turn the player to face the mouse cursor.
-			Turning ();
 		}
-		/*
 		else{
 			//Syncs the movement with the values from the network
 			SyncedMovement();
 		}
-		*/
+
+		// Turn the player to face the mouse cursor.
+		Turning ();
+
 	}
 	
 	void Move (float h, float v)

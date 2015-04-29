@@ -59,6 +59,9 @@ public class NetworkManager : MonoBehaviour {
 	private void SpawnPlayer()
 	{
 		GameObject instantiatedPlayer = (GameObject) Network.Instantiate(playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+
+		Camera.main.GetComponent<CameraFollow>().target = instantiatedPlayer.transform;
+
 		//Canvas canvas = instantiatedPlayer.GetComponentInChildren<Canvas>();
 		//Image image = canvas.GetComponentInChildren<Image>();
 		//Text text = image.GetComponentInChildren<Text>();
